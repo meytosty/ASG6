@@ -1,17 +1,26 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Map;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        MyGraph<Integer> myGraph = new MyGraph<>();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Vertex<Integer> s1 = new Vertex<>(1);
+        Vertex<Integer> s2 = new Vertex<>(2);
+        Vertex<Integer> s3 = new Vertex<>(3);
+        Vertex<Integer> s4 = new Vertex<>(4);
+        Vertex<Integer> s5 = new Vertex<>(5);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        myGraph.addEdge(s1, s2, 5d);
+        myGraph.addEdge(s1, s3, 6d);
+        myGraph.addEdge(s2, s4, 7d);
+        myGraph.addEdge(s2, s5, 8d);
+
+        Map<Vertex<Integer>, Double> distances = myGraph.dijkstra(s1);
+        System.out.println("Dijkstra's Shortest Paths:");
+        for (Vertex<Integer> vertex : distances.keySet()) {
+            System.out.println("From " + s1 + " to " + vertex + ": " + distances.get(vertex));
         }
+
+        System.out.println("\nBreadth-First Search:");
+        myGraph.BFS(s2);
     }
 }
